@@ -1,7 +1,7 @@
 # configure aws provider
 provider "aws" {
-  access_key = ""
-  secret_key = ""
+  access_key = var.access_key
+  secret_key = var.secret_key
   region     = "us-east-1"
   #profile = "Admin"
 }
@@ -10,10 +10,10 @@ provider "aws" {
 resource "aws_instance" "subnet_b_ec2" {
   ami                     = "ami-053b0d53c279acc90"
   instance_type           = "t2.micro"
-  subnet_id               = "subnet-0fb3244280a9b685d"
-  key_name                = "LuisMoreno873key"
+  subnet_id               = var.subnet_id
+  key_name                = var.key_name
 
-  vpc_security_group_ids = ["sg-0861654818083ed21"]
+  vpc_security_group_ids = [var.vpc_security_group_ids]
 
   associate_public_ip_address = true
 
